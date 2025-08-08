@@ -1,0 +1,673 @@
+/* ============================================== */
+/* ========== Start the Global Variables ======== */
+/* ============================================== */
+
+:root {
+    /* Colors */
+    --main-color:#10cab7;                                 
+    --main-background-color:#f6f6f6;
+    --secondary-color:#2c4755;
+    --primary-text-color:#444;
+    --menu-line-color:#444;
+    --menu-background-color:#333;
+    --dark-color:black;
+    --special-heading-text-color:#ebeced;
+    --special-paragraph-text-color:#797979;
+    /* ------------ */
+    /* Typography */
+    --special-heading-text-fontSize:100px;
+    --special-heading-text-fontWeight:800;
+    --special-heading-text-letterSpacing:-3px;
+    --special-heading-textAlign:center;
+    --special-heading-text-margin:0;
+    --special-paragraph-text-fontSize:20px;
+    --special-paragraph-text-margin:-30px 0 0 0;
+    --special-paragraph-textAlign:center;
+    --text-line-height:1.8;
+    --default-margin:1em 0 1em 0;
+    /* ------------- */
+    /* Layout */
+    --main-section-margin:100px 0 0 0;
+    --section-padding:60px;
+    /* ------------- */
+}
+
+
+
+/* ========================================== */
+/* ========== End Global Variables ========== */
+/* ========================================== */
+
+
+/* Start Global Rules */
+* {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Work Sans", sans-serif;
+    background-color: var(--main-background-color);
+}
+/* End Global Rules */
+
+/* ============================ */
+/* ======== Frame-work ========*/
+/* ============================ */
+
+/* Generic container padding & centering */
+.container {
+    padding-left: 15px;
+    padding-right: 15px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
+/* Main section heading style */
+.special-heading {
+    color: var(--special-heading-text-color); /* Color from variables */
+    font-size: var(--special-heading-text-fontSize); /*  large text */
+    font-weight: var(--special-heading-text-fontWeight); /* Bold font */
+    letter-spacing: var(--special-heading-text-letterSpacing); /* Space between letters */
+    margin: var(--special-heading-text-margin); /* Margin around heading */
+    text-align: var(--special-heading-textAlign); /* Center or left aligned */
+}
+
+/* Paragraph directly under a section heading */
+.special-paragraph {
+   color: var(--special-paragraph-text-color); /* Text color */
+    font-size: var(--special-paragraph-text-fontSize); /* Text size */
+    margin: var(--special-paragraph-text-margin); /* Outer spacing */
+    text-align: var(--special-paragraph-textAlign); /* Center/left aligned */
+}
+/* General padding for a section */
+.section-layout {
+    padding-top: var(--section-padding); /* Top space */
+    padding-bottom: var(--section-padding); /* Bottom space */
+    
+}
+/* Responsive grid layout with spacing between items */
+.grid-col-gap30 {
+     display: grid; /* CSS grid layout */
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* Auto-responsive grid */
+    grid-gap: 30px; /* Gap between columns */
+}
+
+/* ============================ */
+/* ==== End of Frame-work ==== */
+/* ============================ */
+
+
+/* ============================ */
+/* ====== Header Section ====== */
+/* ============================ */
+header {
+    /* Inner spacing around header */
+        padding: 20px;
+ }
+
+ header .container {
+    display: flex;/* Flexbox to space logo and nav */
+    justify-content: space-between;/* Space between logo and menu */
+    align-items: center;/*  center items */
+}
+
+/* Logo styling */
+.container .logo {
+    width: 60px;/* Fixed logo width */
+}
+
+/* Navigation Links */
+
+.links {
+    position: relative;/* To position the dropdown menu absolutely inside it */
+}
+
+/* Burger menu button */
+.links .menu {
+    width: 30px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    cursor:pointer;/* Cursor shows it's clickable */
+}
+
+/* Shared styles for all menu lines */
+.links .menu span {
+    background-color: var(--menu-background-color);/* Color of lines */
+    margin-bottom: 5px;/* Space between lines */
+
+}
+
+
+
+/* Top menu line */
+.links .menu span:first-child{
+    width: 100%;
+    height: 2px;
+    background-color: var(--menu-line-color);
+   
+}
+
+/* Middle menu line */
+.links .menu span:nth-child(2){
+    width: 60%;
+    height: 1px;
+    background-color: var(--menu-line-color);
+    transition: 0.3s;/* Smooth expand effect on hover */
+   
+}
+
+/* Middle line hover effect: make full width */
+.links .menu:hover span:nth-child(2) {
+    width: 100%;
+}
+
+/* Bottom menu line */
+.links .menu span:last-child{
+    width: 100%;
+    height: 3px;
+    background-color: var(--menu-line-color);;
+    
+}
+
+/* Dropdown menu list */
+.links ul {
+    padding: 0;
+    margin: 0;
+    position: absolute;/* Position relative to .links */
+    list-style: none;
+    right: 0;
+    min-width: 200px;
+    top: calc(100% + 15px);/* Appear below the menu */
+    background-color: var(--main-background-color);
+    z-index: 1;/* Stay above other elements */
+    display: none;/* Hidden by default */
+}
+
+/* Show menu list on hover */
+.links:hover ul {
+    display: block;
+}
+
+/* Add bottom borders to all links except the last */
+.links ul li:not(:last-child) a {
+    border-bottom: 1px solid var(--dark-color);
+}
+
+/* Style for each dropdown item */
+.links ul li a {
+    display: block;
+    text-decoration: none;
+    color: var(--primary-text-color);
+    padding: 10px;
+    transition: 0.3s;/* Smooth animation on hover */
+}
+
+/* Padding link when hovered */
+.links ul li a:hover {
+    padding-left: 20px;
+}
+
+/* Pointer triangle above the dropdown menu */
+.links ul::before {
+    content: "";
+    position: absolute;
+    border-width: 10px;
+    border-style: solid;
+    border-color: var(--primary-text-color) transparent transparent transparent;
+    right: 5px;
+    top: -18px;  
+}
+
+/* ==================================== */
+/* ====== End The Header Section ====== */
+/* ==================================== */
+
+/* ======================================= */
+/* ====== Start The Landing Section ====== */
+/* ======================================= */
+
+.landing{
+    position: relative;
+    background-image: url(../images/landing.jpg);/* Background image */
+    background-size: cover;/* Cover entire area */
+    background-position: center;/* Center the image */
+    height: calc(100vh - 65px);/* Full viewport height minus header */
+    min-height: 500px;/* Prevent from getting too short */
+}
+
+/* Centered hero content */
+.hero-text {
+    position: absolute;
+    top: 50%;/* Vertically center */
+    left: 50%;/* Horizontally center */
+    transform: translate(-50%,-50%);
+    text-align: center;
+    width: 320px;
+    max-width: 100%;
+}
+
+/* Big welcome headline */
+.hero-text h1 {
+    color: var(--main-color);
+    font-size: 50px;
+    font-weight: bold;
+}
+/* Intro paragraph */
+.hero-text p {
+    font-size: 19px;
+    line-height: var(--text-line-height);
+}
+/* ===================================== */
+/* ====== End The Landing Section ====== */
+/* ===================================== */
+
+/* ======================================== */
+/* ====== Start The Features Section ====== */
+/* ========================================*/
+
+.features .container  {
+    text-align: center;/* Center text and icons */
+    
+}
+
+/* FontAwesome icons */
+.fa-solid {
+    font-size: 3em;
+    color: var(--main-color);
+}
+
+/* Feature description text */
+.features .container p{
+    line-height: var(--text-line-height);
+    color: var(--primary-text-color);
+    font-size: 17px;
+}
+
+/* ====================================== */
+/* ====== End The Features Section ====== */
+/* ======================================*/
+
+
+/* ======================================== */
+/* ====== Start The Services Section ====== */
+/* ========================================*/
+
+.services .container .services-content {
+    margin: var(--main-section-margin);/* Space above services section */
+}
+
+/* Each service item */
+.services .container .services-content .sev {
+    display: flex;
+    margin-bottom: 40px;
+}
+/* Text block inside the service */
+.services .container .services-content .sev .text {
+    flex: 1;/* Take up remaining space */
+}
+
+/* Title for each service */
+.services-content .sev .text h3 {
+    margin:0 0 20px;
+}
+
+/* Description for each service */
+.services-content .sev .text p {
+    text-align: left;
+    font-weight: 300;
+    line-height: var(--text-line-height);
+    margin: var(--default-margin);
+}
+
+/* Icon width beside the text */
+.services-content .sev i {
+    flex-basis: 60px;
+}
+
+/* Service image itself */
+.services-content .image img {
+    width:260px;
+}
+
+/* Wrapper for the image */
+.services-content .image {
+    text-align: center;
+    position: relative;
+    z-index: 0;
+}
+/* Decorative background shape behind image */
+.services-content .image::before {
+    content: "";
+    width: 100px;
+    height: calc(100% + 100px);
+    background-color: var(--secondary-color);
+    position: absolute;
+    top: -50px;
+    right: 0;
+    z-index: -1;
+}
+
+/* ============================================== */
+/* ========== End The Services Section ========== */
+/* ============================================== */
+
+
+/* =============================== */
+/* ========== Portfolio ========== */
+/* =============================== */
+
+.portfolio .container .portfolio-content {
+    margin: var(--main-section-margin);/* Space above portfolio section */
+}
+
+/* Style the card inside the portfolio section to use flex layout */
+.portfolio-content .card {
+    display: flex;
+}
+
+/* Make the portfolio images responsive */
+.portfolio-content .card img {
+    max-width: 100%;
+}
+
+/* Add space below each card title */
+.portfolio-content .card .portfolio-text {
+    padding: 20px;
+}
+/* .portfolio-content .card .portfolio-text h3 {
+    margin-bottom: 40px;
+}
+
+/* Align portfolio descriptions to the left */
+/* .portfolio-content .card .portfolio-text p {
+    text-align: left;
+} */ */
+
+/* ============================================== */
+/* ==========End The Portfolio Section ========== */
+/* ============================================== */
+
+
+/* ============================ */
+/* ========== About =========== */
+/* ============================ */
+
+/* Layout for the about content section using flexbox */
+.about {
+    padding-top: var(--section-padding);
+    padding-bottom: var(--section-padding);
+}
+.about .container .about-content {
+   display: flex;
+   justify-content: space-between;
+   margin: var(--main-section-margin);
+}
+
+/* Style the image card */
+.about .container .about-content .card {
+    width:250px ;
+    height: 375px;
+    position: relative;
+}
+/* Create a decorative background block using ::before */
+.about .container .about-content .card::before {
+    content: "";
+    position: absolute;
+    width: 100px;
+    height: calc(100% + 100px);
+    background-color: #ebeced;
+    left: -20px;
+    top: -50px;
+    z-index: -1;
+}
+/* Create an angled decoration using borders with ::after */
+.about .container .about-content .card::after {
+    content: "";
+    position: absolute;
+    width: 120px;
+    height: 300px;
+    border-left: 80px solid var(--main-color);
+    border-bottom: 80px solid var(--main-color);
+    right: -150px;
+    top: -40px;
+    z-index: -1;
+}
+/* Make the image fit inside the card */
+.about .container .about-content .card img {
+    max-width: 100%;
+}
+/* Set text section width relative to image */
+.about .container .about-content .text {
+    flex-basis: calc(100% - 500px);
+}
+/* Left-align text paragraphs */
+.about .container .about-content .text p {
+    text-align: left;
+}
+/* Style the first paragraph with bold font and custom margin */
+.about .container .about-content .text p:first-of-type  {
+    font-size: 16px;
+    font-weight:bold;
+    line-height: var(--text-line-height);
+    margin: var(--default-margin);
+    margin-bottom: 50px;
+    color: var(--dark-color);
+}
+/* Style the last paragraph with normal font */
+ .about-content .text p:last-of-type {
+    font-size: 16px;
+    line-height: var(--text-line-height); 
+    margin: var(--default-margin);
+    color: var(--primary-text-color);
+}
+
+/* Style horizontal rule under about text */
+.about .container .about-content .text hr {
+    border-color: var(--main-color);
+    width: 50%;
+    display: inline-block;
+}
+
+/* =========================================== */
+/* ========== End The About Section ========== */
+/* =========================================== */
+
+/* ============================= */
+/* ========== Contact ========== */
+/* ============================= */
+
+/* Center all contact content */
+.contact .container .contact-content {
+    text-align: center;
+    margin: var(--main-section-margin);
+}
+/* Style the contact header text */
+.contact .container .contact-content > p {
+    font-size: 35px;
+    font-weight: 800;
+    color: var(--secondary-color);
+    letter-spacing: -2px;
+    margin-bottom: 15px;
+}
+/* Style the email link */
+.contact .container .contact-content a {
+    display: block;
+    font-size: 35px;
+    font-weight: 800;
+    color: var(--main-color);
+    text-decoration: none;
+}
+/* Style social icons layout */
+.contact .container .contact-content .social {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    font-size: 16px;
+}
+/* Add space between social icons */
+.contact .container .contact-content .social i {
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+/* ============================================ */
+/* ==========End The Contact Section ========== */
+/* ============================================ */
+
+/* ============================ */
+/* ========== Footer ========== */
+/* ============================ */
+
+/* Footer styling */
+footer  .footer-content {
+    background-color: var(--secondary-color);
+    color: white;
+    padding: 30px 10px;
+    text-align: center;
+    font-size: 18px;
+} 
+/* Highlight brand name in footer */
+footer .footer-content span {
+    color: var(--main-color);
+}
+
+/* ============================================ */
+/* ========== End The Footer Section ========== */
+/* ============================================ */
+
+/* =================================== */
+/* ========== Media Queries ========== */
+/* =================================== */
+
+/* Small screens: up to 760px */
+ @media (max-width:760px) {
+     
+    /* Resize heading text */
+    .landing .hero-text h1 {
+    font-size: 30px;
+    font-weight: bold;
+    }
+    /* Resize paragraph text */
+   .landing .hero-text p {
+    font-size: 15px;
+    line-height: 1.6;
+    }
+    /* Resize special heading text */
+     .special-heading {
+        font-size: 60px;
+    }
+    /* Resize paragraph under special heading */
+    .special-paragraph {
+        font-size: 15px;
+    }
+    /* Left-align features text on small screens */
+    .features p {
+        text-align: center;
+    }
+    /* Ensure about text is aligned left */
+    #about .about-content .text p:first-of-type ,#about .about-content .text p:last-of-type {
+        text-align: center;
+    }
+    /* Remove decorative ::before and ::after on photo card */
+    .about  .about-content .photo::before,
+    .about  .about-content .photo::after {
+        display: none;
+    }
+    /* Stack services vertically and center text */
+    .services .container .services-content .sev {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    }
+
+     /* Stack services vertically and center text */
+    .services .container .services-content .sev .text p {
+    text-align: center;
+    } 
+    /* Resize contact section title */
+    .contact .container .contact-content >p {
+        font-size: 25px;
+    }
+    /* Resize email link text */
+    .contact .container .contact-content .link {
+        display: block;
+        font-size: 25px;
+    }
+    /* Resize footer text */
+    footer .footer-content {
+        font-size: 18px;
+        
+    }
+
+     /* Add spacing below service descriptions */
+    .services .container .services-content .col2 .sev p {
+        margin-bottom: 48px;
+    }
+    
+}
+
+/* Medium devices (tablets, 768px and up) */
+@media (min-width: 768px) { 
+    .container {
+        width: 750px;
+    }
+     /* Add spacing below service descriptions */
+    .services .container .services-content .col2 .sev p {
+        margin-bottom: 48px;
+    }
+}
+
+/* Large devices (desktops, 992px and up) */
+@media (min-width: 992px) { 
+    .container {
+        width: 970px;
+    }
+}
+    /* For screens smaller than 992px: stack about section */
+ @media (max-width: 992px) {
+    .about .about-content {
+        flex-direction: column;
+        align-items: center; 
+        text-align: center;
+    }
+
+   #about .text  p:first-of-type , #about .text  p:last-of-type  {
+    text-align: center;
+    }
+ }
+
+ @media (min-width: 995px) and (max-width:1188px) {
+    .services-content  {
+        display: grid;
+        grid-template-columns: repeat(2,minmax(250px,1fr));
+        grid-gap:30px;
+    }
+ }
+ /* Hide image column in services on medium screens */
+ @media (max-width: 1190px) {
+    .services-content .image {
+    display: none;
+    }
+}
+    
+ 
+
+/* Extra large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) { 
+    .container {
+        width: 1170px;
+    }
+
+ }
+
+/* XXL devices (larger desktops, 1400px and up) */
+@media (min-width: 1350px) {
+    .container {
+        width: 1300px;
+    }
+    
+}
